@@ -5,6 +5,10 @@
     export let description = "";
     export let required = false;
     export let className = "";
+    /**
+     * Whether to render the control with button support (inline layout)
+     */
+    export let hasButton = false;
 </script>
 
 <!-- Trying to emulate native Obsidian settings -->
@@ -22,8 +26,9 @@
         {/each}
         <slot name="info" />
     </div>
-    <div class="setting-item-control" class:error={$errors.length > 0}>
+    <div class="setting-item-control" class:error={$errors.length > 0} class:with-button={hasButton}>
         <slot />
+        <slot name="button" />
     </div>
 </div>
 
@@ -40,5 +45,9 @@
     /** This will correctly produce a css rule scoped to this file, because the global part is prefixed with a scoped class*/
     .error :global(input) {
         border-color: var(--text-error);
+    }
+    .with-button {
+        display: flex;
+        align-items: center;
     }
 </style>

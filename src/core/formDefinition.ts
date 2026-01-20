@@ -2,6 +2,7 @@ import { input } from "@core";
 import { A, O, pipe } from "@std";
 import { Simplify } from "type-fest";
 import { is, safeParse, type Output } from "valibot";
+import { ButtonConfig } from "./button/ButtonDefinition";
 import {
     FieldDefinitionSchema,
     FieldListSchema,
@@ -71,7 +72,13 @@ export function isInputSelectFixed(input: unknown): input is inputSelectFixed {
 
 export type AllFieldTypes = inputType["type"];
 
-export type FieldDefinition = Output<typeof FieldDefinitionSchema>;
+/**
+ * FieldDefinition type with optional button support
+ * The button property can only be set programmatically and is not part of the persisted schema
+ */
+export type FieldDefinition = Output<typeof FieldDefinitionSchema> & {
+    button?: ButtonConfig;
+};
 /**
  * FormDefinition is an already valid form, ready to be used in the form modal.
  */

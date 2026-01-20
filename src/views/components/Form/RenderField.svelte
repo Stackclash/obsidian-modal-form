@@ -10,6 +10,7 @@
     import ObsidianInputWrapper from "src/views/components/Form/ObsidianInputWrapper.svelte";
     import { derived } from "svelte/store";
     import DocumentBlock from "./DocumentBlock.svelte";
+    import FieldButton from "./FieldButton.svelte";
     import FileInput from "./FileInput.svelte";
     import { makeFileInputModel } from "./FileInputModel";
     import ImageInput from "./ImageInput.svelte";
@@ -115,6 +116,7 @@
             label={definition.label || definition.name}
             description={definition.description}
             required={definition.isRequired}
+            hasButton={!!definition.button}
         >
             {#if definition.input.type === "multiselect"}
                 <MultiSelectField input={definition.input} {value} {errors} {app} />
@@ -124,6 +126,9 @@
                 <InputTag input={definition.input} {value} {errors} {app} />
             {:else}
                 <InputField {value} inputType={definition.input.type} />
+            {/if}
+            {#if definition.button}
+                <FieldButton button={definition.button} {value} slot="button" />
             {/if}
         </ObsidianInputWrapper>
     {/if}

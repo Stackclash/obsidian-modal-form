@@ -7,6 +7,7 @@
     import { log_error } from "src/utils/Log";
     import { get_tfiles_from_folder } from "src/utils/files";
     import { Readable, Writable } from "svelte/store";
+    import FieldButton from "./FieldButton.svelte";
     import ObsidianInput from "./ObsidianInputWrapper.svelte";
     export let field: FieldDefinition;
     export let input: I.Select;
@@ -32,7 +33,12 @@
     }
 </script>
 
-<ObsidianInput {errors} label={field.label || field.name} description={field.description}>
+<ObsidianInput
+    {errors}
+    label={field.label || field.name}
+    description={field.description}
+    hasButton={!!field.button}
+>
     {#if input.source === "fixed"}
         <select bind:value={$value} class="dropdown">
             {#each input.options as option}
@@ -46,5 +52,8 @@
                 <option {value}>{label}</option>
             {/each}
         </select>
+    {/if}
+    {#if field.button}
+        <FieldButton button={field.button} {value} slot="button" />
     {/if}
 </ObsidianInput>

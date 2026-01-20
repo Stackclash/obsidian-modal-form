@@ -3,6 +3,7 @@
     import { FieldDefinition } from "src/core/formDefinition";
     import { FieldValue } from "src/store/formEngine";
     import { Readable, Writable } from "svelte/store";
+    import FieldButton from "./FieldButton.svelte";
     import ObsidianInputWrapper from "./ObsidianInputWrapper.svelte";
     export let field: FieldDefinition;
     export let value: Writable<FieldValue>;
@@ -20,6 +21,10 @@
     label={field.label || field.name}
     description={field.description}
     className="modal-form-textarea"
+    hasButton={!!field.button}
 >
     <textarea bind:value={$value} use:customizeTextArea />
+    {#if field.button}
+        <FieldButton button={field.button} {value} slot="button" />
+    {/if}
 </ObsidianInputWrapper>
