@@ -30,8 +30,7 @@ export const buttonExampleFormDefinition: FormDefinition = {
                         "Elrond",
                         "Galadriel",
                     ];
-                    const randomName = names[Math.floor(Math.random() * names.length)];
-                    return randomName ?? "Aragorn";
+                    return names[Math.floor(Math.random() * names.length)]!;
                 },
             },
         },
@@ -73,9 +72,7 @@ export const buttonExampleFormDefinition: FormDefinition = {
                         "Raised by druids in the forest, protector of nature.",
                         "Street urchin turned hero, fighting for the downtrodden.",
                     ];
-                    const randomBackstory =
-                        backstories[Math.floor(Math.random() * backstories.length)];
-                    return randomBackstory ?? backstories[0] ?? "";
+                    return backstories[Math.floor(Math.random() * backstories.length)]!;
                 },
             },
         },
@@ -108,8 +105,7 @@ export const buttonExampleFormDefinition: FormDefinition = {
                 text: "Today",
                 onClick: (): string => {
                     const today = new Date();
-                    const parts = today.toISOString().split("T");
-                    return parts[0] ?? "";
+                    return today.toISOString().split("T")[0]!;
                 },
             },
         },
