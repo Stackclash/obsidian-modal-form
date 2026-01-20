@@ -3,6 +3,7 @@ import { App, parseFrontMatterAliases } from "obsidian";
 import * as std from "@std";
 import { E, flow } from "@std";
 import { FormModal } from "./FormModal";
+import { buttonExampleFormDefinition } from "./buttonExampleFormDefinition";
 import { makeBuilder } from "./core/FormBuilder";
 import FormResult from "./core/FormResult";
 import { type FormDefinition, type FormOptions } from "./core/formDefinition";
@@ -73,6 +74,9 @@ export class API {
     }
     exampleForm(options?: FormOptions): Promise<FormResult> {
         return this.openModalForm(exampleModalDefinition, options);
+    }
+    buttonExampleForm(options?: FormOptions): Promise<FormResult> {
+        return this.openModalForm(buttonExampleFormDefinition, options);
     }
 
     private getFormByName(name: string): FormDefinition | undefined {

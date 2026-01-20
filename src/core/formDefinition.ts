@@ -81,8 +81,11 @@ export type FieldDefinition = Output<typeof FieldDefinitionSchema> & {
 };
 /**
  * FormDefinition is an already valid form, ready to be used in the form modal.
+ * Fields can optionally have button configurations added programmatically
  */
-export type FormDefinition = Output<typeof FormDefinitionLatestSchema>;
+export type FormDefinition = Omit<Output<typeof FormDefinitionLatestSchema>, "fields"> & {
+    fields: FieldDefinition[];
+};
 export type FormWithTemplate = Simplify<
     FormDefinition & Required<Pick<FormDefinition, "template">>
 >;
